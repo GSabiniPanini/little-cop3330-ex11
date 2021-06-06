@@ -1,4 +1,9 @@
 package base;
+/*
+ *  UCF COP3330 Summer 2021 Assignment 1 Solution
+ *  Copyright 2021 Glenroy Little
+ */
+import java.util.Scanner;
 /**
  Exercise 11 - Currency Conversion
  At some point, you might have to deal with currency exchange rates, and you’ll need to ensure your calculations are as precise as possible.
@@ -29,8 +34,40 @@ package base;
  */
 public class App 
 {
+    static Scanner in = new Scanner(System.in);
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        App myApp = new App();
+
+        int euros = myApp.geteuros();
+        double rate = myApp.getrate();
+        double usd = myApp.calcusd(euros, rate);
+        myApp.output(euros, rate, usd);
+    }
+
+    private void output(int euros, double rate, double usd)
+    {
+        System.out.printf("%d euros at an exchange rate of %.4f is%n%.2f U.S. dollars.", euros, rate, usd);
+    }
+
+    public double getrate()
+    {
+        System.out.print("What is the exchange rate? ");
+        Double rate = in.nextDouble();
+        return rate;
+    }
+
+    public double calcusd(int euros, double rate)
+    {
+        Double usd = euros * rate;
+        return usd;
+    }
+
+    public int geteuros()
+    {
+        System.out.print("How many euros are you exchanging? ");
+        int euros = in.nextInt();
+        return euros;
     }
 }
